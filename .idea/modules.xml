@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringT.iml" filepath="$PROJECT_DIR$/.idea/SpringT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microcommerce/src/main/java/com/ecommerce/microcommerce/microcommerce.iml" filepath="$PROJECT_DIR$/microcommerce/src/main/java/com/ecommerce/microcommerce/microcommerce.iml" />
     </modules>
   </component>
 </project>
