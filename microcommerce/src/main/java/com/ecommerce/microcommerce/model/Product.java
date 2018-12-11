@@ -19,8 +19,6 @@ public class Product {
     private String nom;
     private int prix;
 
-    //Info protégé
-    @JsonFilter("Filtre")
     private int prixAchat;
 
     public Product(){
