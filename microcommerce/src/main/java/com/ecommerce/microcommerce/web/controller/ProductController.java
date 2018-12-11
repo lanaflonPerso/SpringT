@@ -83,7 +83,12 @@ public class ProductController {
     @DeleteMapping (value = "/Produits/{id}")
     public void supprimerProduit(@PathVariable int id) {
 
-        productDAO.delete(id);
-    }
+        Product produit = productDAO.findById(id);
+        if (produit != null) {
 
+            productDAO.delete(produit);
+        }
+        else throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
+
+    }
 }
