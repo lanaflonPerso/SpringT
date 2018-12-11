@@ -5,6 +5,8 @@ import com.ecommerce.microcommerce.model.Product;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -15,6 +17,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+@Api( description="API pour les opérations CRUD sur les produits.")
 @RestController
 public class ProductController {
 
@@ -36,6 +39,7 @@ public class ProductController {
     }
 
     //Récupérer un produit par son Id
+    @ApiOperation(value = "Récupère un produit grâce à son ID à condition que celui-ci soit en stock!")
     @GetMapping(value="/Produits/{id}")
     public Product afficherUnProduit(@PathVariable int id) {
         Product produit = productDAO.findById(id);
