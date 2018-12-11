@@ -37,10 +37,24 @@ public class ProductController {
     //Récupérer un produit par son Id
     @GetMapping(value="/Produits/{id}")
     public Product afficherUnProduit(@PathVariable int id) {
-        return productDAO.findById(id);
+        Product produit = productDAO.findById(id);
+
+        if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.")
+
+        return produit;
     }
 
-    //ajouter un produit
+    /*@GetMapping(value = "test/produits/{prixLimit}")
+    public List<Product> testeDeRequetes(@PathVariable int prixLimit) {
+        return productDAO.findByPrixGreaterThan(400);
+    }*/
+
+    @GetMapping(value = "test/produits/{recherche}")
+    public List<Product> testeDeRequetes(@PathVariable String recherche) {
+        return productDAO.findByNomLike("%"+recherche+"%");
+    }
+
+//    //ajouter un produit
     @PostMapping(value = "/Produits")
     public ResponseEntity<Void> ajouterProduit(@RequestBody Product product) {
 
@@ -58,5 +72,16 @@ public class ProductController {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping (value = "/Produits/{id}")
+    public void supprimerProduit(@PathVariable int id) {
+
+        productDAO.deleteProducts(id);
+    }
+
+    @PutMapping (value = "/Produits")
+    public void updateProduit(@RequestBody Product product) {
+
+        productDAO.save(product);
+    }
 
 }
